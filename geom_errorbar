@@ -1,25 +1,25 @@
-##using geom_errobar to indicate max-min range (periodical range)
+####using geom_errobar to indicate max-min range (periodical range) in R
 
 sample<-read_xlsx("dates.xlsx",sheet="Sheet1")`
 
 tibble(sample)
 
 # A tibble: 13 × 6
-   site                         max   min average type    year
-   <chr>                      <dbl> <dbl>   <dbl> <chr>  <dbl>
- 1 Oppenhiemer, 2017            946   946    946  first   2017
- 2 Xu et al., 2013              940   952    946  first   2013
- 3 Yatsuzuka et al., 2010       945   960    952. second  2010
- 4 Yatsuzuka et al., 2010       935   936    936. first   2010
- 5 Yatsuzuka et al., 2010       859   884    872. third   2010
- 6 Machida et al., 1990, 2007   916   936    926  first   1990
- 7 Yin et al., 2012             923   939    938. first   2012
- 8 Jwa et al., 2003             760   960    860  first   2003
- 9 Sun et al. 2015              916   990    953  first   2015
-10 Sun et al. 2015              940  1020    980  second  2015
-11 Horn and Scheminke, 1998     949   989    969  first   1998
-12 Nakamura et al., 2007        930   943    936. first   2007
-13 Nakamura et al., 2007        912   972    942  second  2007
+#site                         max   min average type    year
+#<chr>                      <dbl> <dbl>   <dbl> <chr>  <dbl>
+#1 Oppenhiemer, 2017            946   946    946  first   2017
+#2 Xu et al., 2013              940   952    946  first   2013
+#3 Yatsuzuka et al., 2010       945   960    952. second  2010
+# 4 Yatsuzuka et al., 2010       935   936    936. first   2010
+#5 Yatsuzuka et al., 2010       859   884    872. third   2010
+#6 Machida et al., 1990, 2007   916   936    926  first   1990
+# 7 Yin et al., 2012             923   939    938. first   2012
+# 8 Jwa et al., 2003             760   960    860  first   2003
+# 9 Sun et al. 2015              916   990    953  first   2015
+#10 Sun et al. 2015              940  1020    980  second  2015
+#11 Horn and Scheminke, 1998     949   989    969  first   1998
+#12 Nakamura et al., 2007        930   943    936. first   2007
+#13 Nakamura et al., 2007        912   972    942  second  2007
 
 sample$max<- as.numeric(max)
 sample$min<- as.numeric(min)
