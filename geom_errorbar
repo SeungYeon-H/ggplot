@@ -1,6 +1,9 @@
-using geom_errobar to indicate max-min range (periodical range)
-`sample<-read_xlsx("dates.xlsx",sheet="Sheet1")`
-`tibble(sample)`
+##using geom_errobar to indicate max-min range (periodical range)
+
+sample<-read_xlsx("dates.xlsx",sheet="Sheet1")`
+
+tibble(sample)
+
 # A tibble: 13 × 6
    site                         max   min average type    year
    <chr>                      <dbl> <dbl>   <dbl> <chr>  <dbl>
@@ -17,3 +20,20 @@ using geom_errobar to indicate max-min range (periodical range)
 11 Horn and Scheminke, 1998     949   989    969  first   1998
 12 Nakamura et al., 2007        930   943    936. first   2007
 13 Nakamura et al., 2007        912   972    942  second  2007
+
+sample$max<- as.numeric(max)
+sample$min<- as.numeric(min)
+sample$average<- as.numeric(average)
+sample<-sample[order(sample$year),]
+
+prac<-ggplot(sample, aes(x=reorder(site, year), y=average,ymin = min, ymax = max,color=type))+
+  geom_hline(yintercept=c(926,946),linetype=1,size=2,color="orange",alpha=0.6)+ 
+  geom_errorbar(size=1.2,width=0.3,alpha=.8)+geom_point(size=4)+
+  coord_flip()+  
+  scale_color_manual(values=c("#2F4E62","#6C8983","#61645B"))+ 
+  theme_bw()+
+  labs(y="Calendar year (AD)")+
+  scale_y_continuous(breaks=seq(760,1020,20),sec.axis = dup_axis())+  
+  theme(axis.title.y=element_blank(),axis.title.x=element_text(face="bold",size=15),axis.text.x=element_text(face="bold",size=11),legend.title=element_blank(),legend.position="none",axis.text.y=element_text(face="bold",size=12))
+
+prac
