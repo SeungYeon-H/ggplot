@@ -1,5 +1,4 @@
 #baekdu mix min average
-setwd("C:/Users/Seung Yeon/Desktop/과제/대학원 박사/▷박사 1학기/ANTH 6035 Dendrochronology/발해")
 bakdu<-read_xlsx("dates.xlsx",sheet="Sheet1")
 
 attach(bakdu)
