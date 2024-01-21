@@ -3,8 +3,6 @@
 ##### the likert plot is based on the 'plot' or 'xyplot', can be contradictory to 'ggplot'.
 
 library(HH)
-
- 
 read<-read_xlsx("file directory")
 read<-subset(read,select=c(1,4:15))
 read[is.na(read)]<-0
@@ -34,7 +32,10 @@ likert<-likertplot(read3,col=mycolor,main="pottery differentiation",text.size=4,
                    strip.left.par=list(cex=2, lines=1),
                    par.strip.text=list(cex=10, lines=2) )
 likert
- 
+
+
+
+
 ###### likert practice using ggplot() and geom_col. 
 ####### you can basically add the couple of the 'bars' 
 
@@ -76,4 +77,15 @@ scale_fill_brewer(type = "div", palette = "Accent")+
   theme(axis.title.x =element_blank(),axis.text.x=element_text(size=15,face="bold"),axis.title.y=element_text(size=16,face="bold"),axis.text.y=element_text(size=16),legend.title=element_blank(),legend.position="bottom",legend.text=element_text(size=15,face="bold"))+
   geom_hline(yintercept=c(0),linetype=1,size=1,color="black",alpha=0.5)
 
+
+### failed.....
+
+library(ggstats) #failed...database format must be changed???????
+#read |> 
+tidyr::pivot_longer(-c(명칭, 유적명, 구분), names_to = "pottery", values_to = "count") |>   
+tidyr::replace_na(list(count = 0)) |>  
+ggplot(aes(count, pottery, fill = 명칭)) +  
+geom_col(position = ggstats::position_likert()) + 
+scale_fill_brewer(type = "div", palette = "RdYlGn") +  
+theme_bw()
 
