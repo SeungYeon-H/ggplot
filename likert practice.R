@@ -1,6 +1,6 @@
-#likert chart practice
-# But I cannot still figure out how to increase the font size
-# the likert plot is based on the 'plot' or 'xyplot', can be contradictory to 'ggplot'.
+#####likert chart practice using library (HH)
+##### But I cannot still figure out how to increase the font size
+##### the likert plot is based on the 'plot' or 'xyplot', can be contradictory to 'ggplot'.
 
 library(HH)
 
@@ -35,4 +35,45 @@ likert<-likertplot(read3,col=mycolor,main="pottery differentiation",text.size=4,
                    par.strip.text=list(cex=10, lines=2) )
 likert
  
+###### likert practice using ggplot() and geom_col. 
+####### you can basically add the couple of the 'bars' 
+
+read<-read_xlsx("file directory")
+bt<-read%>%pivot_longer(cols="병":"완",names_to="pottery",values_to="value")
+head(bt)
+## A tibble: 6 × 3
+  명칭       pottery                 value
+  <chr>      <chr>                   <dbl>
+1 85-2토광묘 병                          0
+2 85-2토광묘 뚜껑                       19
+3 85-2토광묘 자비용기                    0
+4 85-2토광묘 직구단경호                  0
+5 85-2토광묘 삼족토기(삼족기,삼족반)     15
+6 85-2토광묘 호                          0
+
+
+tail(bt)
+## A tibble: 6 × 3
+  명칭       pottery        value
+  <chr>      <chr>          <dbl>
+1 85-1토광묘 파배(대부파배)     0
+2 85-1토광묘 광구호             1
+3 85-1토광묘 소호,대부소호      0
+4 85-1토광묘 고배               1
+5 85-1토광묘 시루(파수)         1
+6 85-1토광묘 완                 0
+
+bt$value<- as.numeric(bt$value)
+bt[is.na(bt)]<-0
+
+ggplot()+
+  geom_col(data=bt%>%filter(명칭=="85-1토광묘"),aes(pottery,value,fill=명칭),color="white")+
+  geom_col(data=bt%>%filter(명칭=="85-2토광묘"),aes(pottery,value*(-1),fill=명칭),color="white")+
+  coord_flip()+
+  scale_y_continuous(limits = c(-20, 20),breaks = seq(-20,20,2),labels = abs(seq(-20, 20, 2)))+
+scale_fill_brewer(type = "div", palette = "Accent")+
+  theme_fivethirtyeight()+  
+  theme(axis.title.x =element_blank(),axis.text.x=element_text(size=15,face="bold"),axis.title.y=element_text(size=16,face="bold"),axis.text.y=element_text(size=16),legend.title=element_blank(),legend.position="bottom",legend.text=element_text(size=15,face="bold"))+
+  geom_hline(yintercept=c(0),linetype=1,size=1,color="black",alpha=0.5)
+
 
