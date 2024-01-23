@@ -13,7 +13,7 @@ read3<-read2[c(2:12),]
 read3$`85-2`<- as.numeric(read3$`85-2`)
 read3$`85-1`<- as.numeric(read3$`85-1`)
 head(read3)
-# the data format has to be two-way table like this 
+# the data format has to be contingency table (also known as a cross tabulation or crosstab)
 
 #                        85-2 85-1
 병                         0    1
