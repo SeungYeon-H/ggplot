@@ -1,4 +1,4 @@
-bakdu<-read_xlsx("dates.xlsx",sheet="Sheet1")
+bakdu<-read_xlsx("dates.xlsx",sheet="Sheet1") #follow-up data from the uploaded 'geom_errorbar'
 attach(bakdu)
 bakdu$max<- as.numeric(max)
 bakdu$min<- as.numeric(min)
@@ -15,17 +15,19 @@ bakdu[ , "id" ] <- 1:nrow(bakdu) #inserting new column named 'id', composed of t
 # $ type   : chr [1:9] "first" "first" "first" "first" ...
 # $ year   : Factor w/ 9 levels "1990","1998",..: 9 8 7 6 5 4 3 2 1
 # $ id     : int [1:9] 1 2 3 4 5 6 7 8 9
+
 ### making sure that id is 'int' and site is 'chr' + year is 'factor'
+# id is inserted to 'x' and then site will substitute it. 
 
 ggplot(bakdu, aes(x = id, fill = year)) +
   geom_rect(aes(xmin=id-0.25,xmax=id+0.25,ymin=max,ymax=min),alpha = 0.7)+  
 theme_minimal()+  
 coord_flip()+
-  scale_y_continuous(breaks=seq(760,1020,20),sec.axis = dup_axis())+
+  scale_y_continuous(breaks=seq(760,1020,20),sec.axis = dup_axis())+ 
 scale_x_continuous(expand=c(0,0),
   limits = c(min(id)-0.5,max(id)+0.5),
-  breaks = c(min(id)-0.5,unique(id),unique(id) + 0.5
-  ),  labels = c("",as.character(unique(site)),  rep(c(""), length(unique(site)))
+  breaks = c(min(id)-0.5,unique(id),unique(id) + 0.5 #unique: A unique function is a function that removes only one duplicate data
+  ),  labels = c("",as.character(unique(site)),  rep(c(""), length(unique(site))) #subsituting id to site  
     )) +  
   theme(axis.title =element_blank(),axis.text = element_text(size = 12, face = "bold"))+
   scale_fill_viridis(discrete=TRUE,option="magma")
