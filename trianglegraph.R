@@ -4,13 +4,15 @@ data<-subset(data,select=c(1:6))
 data<-data%>%filter(site=="Mongchon"|site=="Achasan")
 str(data)
 #'data.frame':	9 obs. of  6 variables:
- $ 토기: chr  "1988-89" "1" "2" "3" ...
- $ site: chr  "Mongchon" "Mongchon" "Achasan" "Achasan" ...
- $ 조리: num  123 63 23 38 17 24 40 17 62
- $ 배식: num  225 18 129 162 103 134 190 93 226
- $ 저장: num  161 82 198 170 180 235 252 145 149
- $ 의례: num  61 16 6 5 2 7 8 5 10
+# $ 토기: chr  "1988-89" "1" "2" "3" ...
+# $ site: chr  "Mongchon" "Mongchon" "Achasan" "Achasan" ...
+# $ 조리: num  123 63 23 38 17 24 40 17 62
+# $ 배식: num  225 18 129 162 103 134 190 93 226
+# $ 저장: num  161 82 198 170 180 235 252 145 149
+# $ 의례: num  61 16 6 5 2 7 8 5 10
 
+#but no way to change axis into the count, only described as the percentages 
+# looking for a way to put the axis title at the middle of the each of the (x,y,z) axis.
 attach(data)
 data <- as.data.frame(data)
  
