@@ -19,7 +19,7 @@ data <- as.data.frame(data)
 data %>%ggtern(aes(x = 조리,y = 배식,z = 의례,color = site)) +  
   geom_point(alpha=.6,size = 5) +
   labs(yarrow = "serving",zarrow = "ritual",xarrow = "cooking") +
-  theme_bw()+
+  theme_arrowshort()+ #othertheme: theme_showarrows() theme_rgbw()
   scale_color_manual(values=c("blue", "brown"))+
   geom_text(data=subset(data, 의례 > 10),aes(x=조리+5, y=배식-5,label=토기),check_overlap=T, size=3) + 
   theme_clockwise()+ 
