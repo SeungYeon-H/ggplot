@@ -1,6 +1,5 @@
 #https://r-charts.com/flow/sankey-diagram-ggplot2/
-#napoleon: https://residentmario.github.io/geoplot/gallery/plot_minard_napoleon_russia.html
-install.packages("remotes")
+#napoleon( BRIEF DIVERSION INTO STATIC ALLUVIAL/SANKEY DIAGRAMS IN R):https://matthewdharris.com/2017/11/11/a-brief-diversion-into-static-alluvial-sankey-diagrams-in-r/
 remotes::install_github("davidsjoberg/ggsankey")
 
 library(ggsankey)
