@@ -1,6 +1,8 @@
 #https://r-charts.com/flow/sankey-diagram-ggplot2/
+#napoleon: https://residentmario.github.io/geoplot/gallery/plot_minard_napoleon_russia.html
 install.packages("remotes")
 remotes::install_github("davidsjoberg/ggsankey")
+
 library(ggsankey)
 library(viridis)
  str(df)
