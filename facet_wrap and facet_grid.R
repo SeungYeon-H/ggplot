@@ -56,3 +56,4 @@ plot(data,aes(Site,value,fill=`function`))+
         legend.position="bottom")+  
   scale_fill_viridis(discrete=TRUE,option="H")
 
+#https://www.zevross.com/blog/2019/04/02/easy-multi-panel-plots-in-r-using-facdt_wrap-and-facet_grid-from-ggplot2/
