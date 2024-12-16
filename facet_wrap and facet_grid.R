@@ -33,6 +33,53 @@ ggplot(aes(x = name, y = value, fill = pottery)) +
   coord_flip() +
   guides(fill = guide_legend(nrow = 2, byrow = FALSE, keyheight = unit(1, "cm")))
 
+
+#revised version - putting legend on the top-right (using legend.justification="top")
+graph1<-bt %>%  ggplot(aes(x = name, y = value, fill = pottery)) +
+  geom_bar(position = position_fill(reverse = TRUE), stat = "identity", width = 0.5, size = 0.5) +
+  theme_minimal() +
+  facet_wrap(~Phase, scales = "free_x", nrow = 1)+
+  scale_y_continuous(labels = scales::percent, breaks = seq(0, 1.1, 0.2),sec.axis = dup_axis()) +
+  geom_text(
+    data = label_data,  aes(label = total_value, y = total_value), 
+    position = position_fill(vjust = 0.5, reverse = TRUE), 
+    size = 2.5, color = "black"  ) +
+  geom_text(aes(label = paste0("Feature n= ", count), y = 0),  size = 3, color = "black", vjust = 4, hjust = -1
+  ) +
+  theme(strip.text = element_text(size=12,color = "white",face="bold"),
+        strip.placement = "outside", #sec.axis관련 
+        panel.spacing = unit(1.5, "mm"),
+        strip.background.x = element_rect(fill = "gray0", color = "white"),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        axis.ticks.x = element_line(size = 0.5, color = "black"), 
+        axis.ticks.y = element_line(size = 0.5, color = "black"), 
+        legend.title = element_blank(),
+        panel.border = element_rect(color = "gray80", size = 0.2,fill=NA),
+        legend.text = element_text(size = 10),  
+        axis.text.x = element_text(size = 10), 
+        axis.text.y = element_text(size = 12, face = "bold"),
+        legend.justification = "top",
+        legend.background = element_blank(),
+        legend.box.background = element_blank(),
+        legend.box.margin = margin(t = 1, r = 5, b = 5, l = 5),
+        plot.margin = margin(t = 6, r = 5, b = 5, l = 1, unit = "mm")
+  ) +
+  scale_fill_manual(values = c( "#7B7A7C", "#449D87","#82DCAB", "#C9CE6A", "#FDD370", "#FFAEA7", "#F37D71", "#948"
+  ),labels = c(
+    "hard plain pottery", 
+    "paddled pottery: cooking vessel",
+    "paddled pottery: large jar", 
+    "paddled pottery: jar", 
+    "paddled pottery: steamer", 
+    "Baekje style pottery: arc shaped jar \n with straight neck", 
+    "Baekje style pottery: serving vessel\n(tripods, pottery stands, and mounted dish)",
+    "Baekje style pottery: flat bowl")) +
+  coord_flip() +
+  guides(fill = guide_legend(nrow = 8, byrow = FALSE, keyheight = unit(0.8, "cm")))
+
+
+
 # facet_grid(row_variable ~ column_variable)
 
 plot(data,aes(Site,value,fill=`function`))+
