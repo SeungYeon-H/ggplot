@@ -1,1 +1,1 @@
-**ggplot in R Studio!**
+**Notes for code in ggplot in R Studio!**
