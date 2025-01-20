@@ -12,3 +12,4 @@ ggcorrplot(M,hc.order=T, type="lower",
            ggtheme = ggplot2::theme_minimal,
            colors = c("#6D9EC1", "white", "#E46726"))
 #http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2
+#https://statsandr.com/blog/correlogram-in-r-how-to-highlight-the-most-correlated-variables-in-a-dataset/
