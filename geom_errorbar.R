@@ -43,3 +43,27 @@ prac<-ggplot(sample, aes(x=reorder(site, year),
        )
 
 prac
+
+
+
+## another version without average dots
+prac<-ggplot(boru_long, aes(x=reorder(site, 순서), y=average, ymin = min, ymax = max,color=지역,shape=dataset))+
+  geom_hline(yintercept=c(475,551),linetype=1,size=4,color="#E7F429",alpha=0.3)+
+ scale_size_manual(values=c(1.8,1)) +
+  geom_errorbar(aes(size = dataset), width=0.6,alpha=.8, position = position_dodge(width = 0.5))+
+  coord_flip()+  
+  scale_color_brewer(palette ="Spectral" ) + 
+  theme_light()+
+  labs(y="Calendar year (AD)")+
+  scale_y_continuous(breaks=seq(175,950,50), sec.axis = dup_axis())+  
+  theme(axis.title.y=element_blank(),
+        axis.title.x=element_text(face="bold",size=14),
+        axis.text.x=element_text(face="bold",size=12),
+        legend.title=element_blank(),
+        legend.position="bottom",
+        legend.text=element_text(size=13,face="bold"),
+        axis.text.y=element_text(face="bold",size=12)) +
+  guides( color = guide_legend(title = "지역", order = 1, override.aes = list(size = 5, stroke = 4)), linetype = guide_legend(title = "Dataset", order = 2)
+  )+
+coord_flip(ylim = c(225, 925))
+prac
